@@ -1,0 +1,38 @@
+@{
+    ViewData["Title"] = "Home";
+}
+
+<section class="hero">
+    <div class="container hero-grid">
+        <div>
+            <span class="eyebrow">Kandy Municipal Council</span>
+            <h1>Find what is happening around Kandy.</h1>
+            <p class="hero-copy">Browse public events, search by date or type, and register online from one central city platform.</p>
+            <div class="button-row">
+                <a class="button primary" asp-controller="Events" asp-action="Index">Browse Events</a>
+                <a class="button secondary" asp-controller="Account" asp-action="Login">Organizer Login</a>
+            </div>
+        </div>
+        <div class="hero-panel">
+            <span class="panel-label">Platform services</span>
+            <div class="service-item"><strong>Event discovery</strong><span>Public search and filtering</span></div>
+            <div class="service-item"><strong>Online registration</strong><span>Simple participant registration</span></div>
+            <div class="service-item"><strong>Organizer tools</strong><span>Create and manage owned events</span></div>
+            <div class="service-item"><strong>Reusable API</strong><span>REST endpoints for client integration</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-heading">
+            <span class="eyebrow">One city platform</span>
+            <h2>Built around clear services</h2>
+        </div>
+        <div class="feature-grid">
+            <article class="feature-card"><h3>Search</h3><p>Find available events by date and event type without creating an account.</p></article>
+            <article class="feature-card"><h3>Register</h3><p>Submit participant details for an event and receive an immediate confirmation.</p></article>
+            <article class="feature-card"><h3>Manage</h3><p>Organizers can create, update and delete only the events that they own.</p></article>
+        </div>
+    </div>
+</section>

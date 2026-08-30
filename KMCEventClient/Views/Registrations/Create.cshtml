@@ -1,0 +1,5 @@
+@model RegistrationFormViewModel
+@{
+    ViewData["Title"] = "Event Registration";
+}
+<section class="section"><div class="container narrow"><div class="form-card"><span class="eyebrow">Participant registration</span><h1>Register for @Model.EventName</h1><p>Enter your contact details below. A public account is not required.</p><form asp-action="Create" method="post">@Html.AntiForgeryToken()<input asp-for="EventID" type="hidden" /><input asp-for="EventName" type="hidden" /><div asp-validation-summary="ModelOnly" class="validation-summary"></div><div class="field"><label asp-for="FullName"></label><input asp-for="FullName" /><span asp-validation-for="FullName"></span></div><div class="field"><label asp-for="Email"></label><input asp-for="Email" /><span asp-validation-for="Email"></span></div><div class="field"><label asp-for="PhoneNumber"></label><input asp-for="PhoneNumber" /><span asp-validation-for="PhoneNumber"></span></div><button class="button primary full" type="submit">Confirm registration</button></form></div></div></section>

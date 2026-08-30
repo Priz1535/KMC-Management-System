@@ -1,0 +1,45 @@
+@model List<EventViewModel>
+@{
+    ViewData["Title"] = "Browse Events";
+    var selectedDate = ViewBag.SelectedDate as string ?? string.Empty;
+    var selectedType = ViewBag.SelectedType as string ?? string.Empty;
+}
+<section class="page-banner">
+    <div class="container"><span class="eyebrow">Public events</span><h1>Browse Kandy events</h1><p>Search the city event list by date or type.</p></div>
+</section>
+<section class="section">
+    <div class="container">
+        <form method="get" class="search-panel">
+            <div><label for="date">Date</label><input id="date" name="date" type="date" value="@selectedDate" /></div>
+            <div><label for="type">Event type</label><input id="type" name="type" value="@selectedType" placeholder="e.g. Cultural, Sports" /></div>
+            <div class="search-actions"><button class="button primary" type="submit">Search events</button><a class="button ghost" asp-action="Index">Clear</a></div>
+        </form>
+
+        @if (ViewBag.ErrorMessage is string apiError)
+        {
+            <div class="alert error">@apiError</div>
+        }
+
+        <div class="result-heading"><h2>@Model.Count event@(Model.Count == 1 ? "" : "s") found</h2></div>
+        @if (Model.Count == 0)
+        {
+            <div class="empty-state"><h3>No matching events</h3><p>Try removing one of the search filters.</p></div>
+        }
+        else
+        {
+            <div class="event-grid">
+                @foreach (var item in Model)
+                {
+                    <article class="event-card">
+                        <div class="event-card-top"><span class="event-type">@item.EventType</span><span class="places">@item.AvailablePlaces places left</span></div>
+                        <h3>@item.EventName</h3>
+                        <p class="event-meta">@item.EventDate.ToString("ddd, dd MMM yyyy") · @DateTime.Today.Add(item.EventTime).ToString("h:mm tt")</p>
+                        <p class="event-meta">@item.VenueName, @item.VenueCity</p>
+                        <p>@(item.Description.Length > 140 ? item.Description[..140] + "…" : item.Description)</p>
+                        <div class="card-footer"><span>By @item.OrganizationName</span><a asp-action="Details" asp-route-id="@item.EventID">View details →</a></div>
+                    </article>
+                }
+            </div>
+        }
+    </div>
+</section>

@@ -1,0 +1,6 @@
+@model List<RegistrationViewModel>
+@{
+    ViewData["Title"] = "Event Registrations";
+}
+<section class="page-banner compact"><div class="container"><a class="back-link" asp-action="Dashboard">← Back to dashboard</a><span class="eyebrow">Participant list</span><h1>@ViewBag.EventName</h1><p>@Model.Count participant registration@(Model.Count == 1 ? "" : "s")</p></div></section>
+<section class="section"><div class="container">@if (Model.Count == 0){<div class="empty-state"><h3>No registrations yet</h3><p>Participant registrations will appear here.</p></div>}else{<div class="table-wrap"><table class="data-table"><thead><tr><th>Participant</th><th>Email</th><th>Phone</th><th>Status</th><th>Registered</th></tr></thead><tbody>@foreach(var item in Model){<tr><td><strong>@item.FullName</strong></td><td>@item.Email</td><td>@item.PhoneNumber</td><td><span class="status-chip">@item.RegistrationStatus</span></td><td>@item.RegistrationDate.ToLocalTime().ToString("dd MMM yyyy HH:mm")</td></tr>}</tbody></table></div>}</div></section>

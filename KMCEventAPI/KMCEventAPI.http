@@ -1,0 +1,30 @@
+@host = https://localhost:7047
+
+### Public - list events
+GET {{host}}/api/events
+Accept: application/json
+
+### Public - list venues
+GET {{host}}/api/venues
+Accept: application/json
+
+### Register organizer (change details before running repeatedly)
+POST {{host}}/api/auth/register
+Content-Type: application/json
+
+{
+  "organizerName": "Test Organizer",
+  "email": "organizer@example.com",
+  "phoneNumber": "0712345678",
+  "organizationName": "Kandy Community Group",
+  "password": "Test123!"
+}
+
+### Login organizer
+POST {{host}}/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "organizer@example.com",
+  "password": "Test123!"
+}

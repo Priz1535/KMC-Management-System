@@ -1,0 +1,6 @@
+@model EventFormViewModel
+<div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+<div class="two-col"><div class="field"><label asp-for="EventName"></label><input asp-for="EventName" /><span asp-validation-for="EventName"></span></div><div class="field"><label asp-for="EventType"></label><input asp-for="EventType" placeholder="Cultural, Sports, Community..." /><span asp-validation-for="EventType"></span></div></div>
+<div class="field"><label asp-for="Description"></label><textarea asp-for="Description" rows="5"></textarea><span asp-validation-for="Description"></span></div>
+<div class="three-col"><div class="field"><label asp-for="EventDate"></label><input asp-for="EventDate" type="date" /><span asp-validation-for="EventDate"></span></div><div class="field"><label asp-for="EventTime"></label><input asp-for="EventTime" type="time" /><span asp-validation-for="EventTime"></span></div><div class="field"><label asp-for="Capacity"></label><input asp-for="Capacity" type="number" min="1" /><span asp-validation-for="Capacity"></span></div></div>
+<div class="field"><label asp-for="VenueID"></label><select asp-for="VenueID"><option value="">Select a venue</option>@foreach (var venue in Model.Venues){<option value="@venue.VenueID">@venue.VenueName — capacity @venue.Capacity</option>}</select><span asp-validation-for="VenueID"></span></div>

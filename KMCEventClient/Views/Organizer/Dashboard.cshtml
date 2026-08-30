@@ -1,0 +1,10 @@
+@model List<EventViewModel>
+@{
+    ViewData["Title"] = "Organizer Dashboard";
+}
+<section class="page-banner compact"><div class="container dashboard-head"><div><span class="eyebrow">Organizer dashboard</span><h1>@(ViewBag.OrganizationName ?? "My events")</h1><p>Manage only the events created by this organizer account.</p></div><a class="button primary" asp-action="CreateEvent">Create new event</a></div></section>
+<section class="section"><div class="container">
+@if (ViewBag.ErrorMessage is string apiError) { <div class="alert error">@apiError</div> }
+@if (Model.Count == 0) { <div class="empty-state"><h3>No events created yet</h3><p>Create your first event to start using the organizer dashboard.</p><a class="button primary" asp-action="CreateEvent">Create event</a></div> }
+else { <div class="table-wrap"><table class="data-table"><thead><tr><th>Event</th><th>Date</th><th>Venue</th><th>Registrations</th><th>Actions</th></tr></thead><tbody>@foreach (var item in Model) { <tr><td><strong>@item.EventName</strong><span class="table-sub">@item.EventType</span></td><td>@item.EventDate.ToString("dd MMM yyyy")</td><td>@item.VenueName</td><td>@item.RegisteredCount / @item.Capacity</td><td><div class="table-actions"><a asp-action="EditEvent" asp-route-id="@item.EventID">Edit</a><a asp-action="Registrations" asp-route-eventId="@item.EventID">Registrations</a><a class="danger-link" asp-action="DeleteEvent" asp-route-id="@item.EventID">Delete</a></div></td></tr> }</tbody></table></div> }
+</div></section>

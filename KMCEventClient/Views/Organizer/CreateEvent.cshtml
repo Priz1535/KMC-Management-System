@@ -1,0 +1,5 @@
+@model EventFormViewModel
+@{
+    ViewData["Title"] = "Create Event";
+}
+<section class="section"><div class="container form-wide"><div class="form-card"><span class="eyebrow">Organizer tools</span><h1>Create a new event</h1><p>Complete the event information below. The event will be linked to your organizer account.</p><form id="event-form" asp-action="CreateEvent" method="post">@Html.AntiForgeryToken()<partial name="_EventFields" model="Model" /><div class="button-row"><button class="button primary" type="submit">Create event</button><a class="button ghost" asp-action="Dashboard">Cancel</a></div></form></div></div></section>

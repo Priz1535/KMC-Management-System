@@ -1,0 +1,5 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Organizer Login";
+}
+<section class="section"><div class="container narrow"><div class="form-card"><span class="eyebrow">Organizer access</span><h1>Sign in to manage events</h1><form asp-action="Login" method="post">@Html.AntiForgeryToken()<div asp-validation-summary="ModelOnly" class="validation-summary"></div><div class="field"><label asp-for="Email"></label><input asp-for="Email" autocomplete="email" /><span asp-validation-for="Email"></span></div><div class="field"><label asp-for="Password"></label><input asp-for="Password" autocomplete="current-password" /><span asp-validation-for="Password"></span></div><button class="button primary full" type="submit">Login</button></form><p class="form-note">New organizer? <a asp-action="Register">Create an organizer account</a>.</p></div></div></section>

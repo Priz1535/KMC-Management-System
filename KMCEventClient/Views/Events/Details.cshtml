@@ -1,0 +1,32 @@
+@model EventViewModel
+@{
+    ViewData["Title"] = Model.EventName;
+}
+<section class="page-banner compact">
+    <div class="container"><a class="back-link" asp-action="Index">← Back to events</a><span class="event-type">@Model.EventType</span><h1>@Model.EventName</h1><p>Organized by @Model.OrganizationName</p></div>
+</section>
+<section class="section">
+    <div class="container detail-grid">
+        <article class="detail-card">
+            <h2>About this event</h2>
+            <p class="long-copy">@Model.Description</p>
+            <h3>Venue</h3>
+            <p><strong>@Model.VenueName</strong><br />@Model.VenueAddress, @Model.VenueCity</p>
+        </article>
+        <aside class="booking-card">
+            <div class="booking-row"><span>Date</span><strong>@Model.EventDate.ToString("dd MMMM yyyy")</strong></div>
+            <div class="booking-row"><span>Time</span><strong>@DateTime.Today.Add(Model.EventTime).ToString("h:mm tt")</strong></div>
+            <div class="booking-row"><span>Capacity</span><strong>@Model.Capacity</strong></div>
+            <div class="booking-row"><span>Registered</span><strong>@Model.RegisteredCount</strong></div>
+            <div class="booking-row"><span>Available</span><strong>@Model.AvailablePlaces</strong></div>
+            @if (Model.AvailablePlaces > 0 && Model.EventDate.Date >= DateTime.Today)
+            {
+                <a class="button primary full" asp-controller="Registrations" asp-action="Create" asp-route-eventId="@Model.EventID">Register for this event</a>
+            }
+            else
+            {
+                <div class="alert error">Registration is currently unavailable for this event.</div>
+            }
+        </aside>
+    </div>
+</section>

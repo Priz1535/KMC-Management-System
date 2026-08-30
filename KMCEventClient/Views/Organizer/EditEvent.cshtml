@@ -1,0 +1,5 @@
+@model EventFormViewModel
+@{
+    ViewData["Title"] = "Edit Event";
+}
+<section class="section"><div class="container form-wide"><div class="form-card"><span class="eyebrow">Organizer tools</span><h1>Edit @Model.EventName</h1><p>Only the organizer that created this event can save these changes.</p><form asp-action="EditEvent" method="post">@Html.AntiForgeryToken()<input asp-for="EventID" type="hidden" /><partial name="_EventFields" model="Model" /><div class="button-row"><button class="button primary" type="submit">Save changes</button><a class="button ghost" asp-action="Dashboard">Cancel</a></div></form></div></div></section>
